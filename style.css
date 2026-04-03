@@ -122,57 +122,70 @@ main {
     margin-bottom: 16px;
 }
 
+.services_text h2 {
+    font-size: 32px;
+    text-align: center;
+}
+
+.services_text p {
+    max-width: 700px;
+    text-align: center;
+    line-height: 1.6;
+    margin: 45px auto 16px auto;
+}
+
 .services {
-    margin: 45px;
-    margin-right: auto;
-    margin-left: auto;
-    padding: 24px;
-    border-radius: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+}
+
+/*i tried using AI for the cards but looks like THE DIPSHIT THAT IS GITHUB COPILOT GOT IT WRONG AND NOW MY CSS IS A MESS*/
+
+.service {
+    width: 325px;
     background-color: hsl(0, 0%, 20%);
-    height: fit-content;
-    width: fit-content;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 16px;
+    padding: 16px;
+    transition: all 0.3s ease;
 }
 
-.services h2 {
-    font-size: 28px;
-    margin-bottom: 16px;
-}
-
-.services ul {
-    list-style: disc;
-    padding-left: 20px;
-    margin-top: 16px;
+.service:hover {
+    background-color: hsl(0, 0%, 35%);
 }
 
 .featured {
-    margin: 45px;
-    margin-right: auto;
-    margin-left: auto;
-    padding: 24px;
-    border-radius: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+}
+
+.project {
+    width: 325px;
     background-color: hsl(0, 0%, 20%);
-    height: fit-content;
-    width: fit-content;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 16px;
+    padding: 16px;
+    transition: all 0.3s ease;
 }
 
-.featured h2 {  
-    font-size: 28px;
-    margin-bottom: 16px;
-}
-
-.featured h3 {
-    font-size: 24px;
+.project img {
     margin-bottom: 8px;
 }
 
-.featured p {
-    margin-bottom: 4px;
-}
-
-.featured ul {
-    list-style: disc;
-    padding-left: 20px;
-    margin-top: 16px;
+.project:hover {
+    background-color: hsl(0, 0%, 35%);
 }
 
 footer {

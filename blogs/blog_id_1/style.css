@@ -82,58 +82,70 @@ h1 {
     gap: 24px;
 }
 
-.featured_article {
-    width: fit-content;
-    margin: auto;
-    padding: 16px;
-    background-color: hsl(0, 0%, 20%);
-    border-radius: 16px;
-    transition: all 0.3s ease;
+.no_blog {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 24px;
 }
 
-.featured_article .tag {
-    width: fit-content;
-    background-color: hsl(270, 100%, 10%);
-    padding: 5;
-    color: hsl(150, 100%, 55%);
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 20px;
-    border-color: hsl(0, 0%, 90%);
-    border-style: solid;
-    border-width: thin;
+.no_blog h1 {
+    font-size: 48px;
+    padding: 40px 24px;
+    background: linear-gradient(135deg, #1c0033 0%, #2d0052 100%);
 }
 
-.recent_blogs_text {
+.blog_content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 40px 24px;
+    line-height: 1.8;
+    color: hsl(0, 0%, 85%);
+}
+
+.blog_content h2 {
+    font-size: 36px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: hsl(0, 0%, 90%);
+    border-bottom: 2px solid hsl(0, 0%, 90%);
+    padding-bottom: 12px;
+}
+
+.blog_content h2:first-child {
+    margin-top: 0;
+}
+
+.blog_content h3 {
+    font-size: 24px;
+    margin-top: 32px;
+    margin-bottom: 16px;
+    color: hsl(0, 0%, 90%);
+}
+
+.blog_content p {
+    margin-bottom: 16px;
+    font-size: 16px;
+}
+
+.blog_content ul {
+    margin-left: 20px;
+    margin-bottom: 24px;
+}
+
+.blog_content ul li {
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+.blog_content strong {
+    color: hsl(0, 0%, 45%);
+    font-weight: 600;
+}
+
+footer {
+    background-color: #1c0033;
+    color: hsl(0, 0%, 90%);
     text-align: center;
-    margin-top: 16px;
-    font-size: 28px;
-}
-
-.recent_blogs {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px;
-}
-
-.featured_article:hover {
-    background-color: hsl(0, 0%, 35%);
-}
-
-.recent_blogs .blog {
-    width: 500px;
-    background-color: hsl(0, 0%, 20%);
-    border-radius: 10px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 16px;
     padding: 16px;
-    transition: all 0.3s ease;
-}
-
-.recent_blogs .blog:hover {
-    background-color: hsl(0, 0%, 35%);
+    margin-top: 24px;
 }
