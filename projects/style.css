@@ -49,9 +49,9 @@ a {
 
 .nav-links ul li a {
     text-decoration: none;
-    background-color: hsl(0, 0%, 0%);
     color: white;
     font-size: 18px;
+    background-color: hsl(0, 0%, 0%);
     padding: 10px 24px;
     transition: background-color 0.3s ease;
     border-radius: 35px;
@@ -80,4 +80,31 @@ h1 {
     background-position: center;
     border-radius: 24px;
     gap: 24px;
+}
+
+.projects {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+    padding: 24px;
+}
+
+.project {
+    background-color: hsl(0, 0%, 20%);
+    border-radius: 16px;
+    padding: 16px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+footer {
+    background-color: #1c0033;
+    color: hsl(0, 0%, 90%);
+    text-align: center;
+    padding: 16px;
+    margin-top: 200px;
 }
