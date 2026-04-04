@@ -30,7 +30,7 @@ website/
 │       └── style.css
 │
 ├── projects/
-│   ├── index.html              # Not built yet
+│   ├── index.html              # Shows current projects
 │   └── style.css
 │
 ├── contact/
@@ -46,7 +46,6 @@ website/
 
 ## Coming Soon
 
-- **Projects page** — list all projects with descriptions and download links
 - **Contact page** — simple form (name, email, message)
 - **Individual project pages** — like blog posts but for each project
 - **Shared stylesheet** — one `style.css` for the whole site instead of copies in every folder
