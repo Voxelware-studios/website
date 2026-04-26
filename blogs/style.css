@@ -52,7 +52,7 @@ a {
     background-color: #2a0045;
     color: white;
     border-radius: 35px;
-   text-decoration: none;
+    text-decoration: none;
     padding: 10px 24px;
     border: 1px solid #f940d4;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
@@ -98,7 +98,7 @@ h1 {
 .featured_article .tag {
     width: fit-content;
     background-color: hsl(270, 100%, 10%);
-    padding: 5;
+    padding: 5px;
     color: hsl(150, 100%, 55%);
     padding-left: 10px;
     padding-right: 10px;
@@ -150,12 +150,12 @@ footer {
     margin-top: 150px;
 }
 footer p a {
-	color: inherit;
-	text-decoration: none;
-	text-shadow: 0.3px 0 0 #ffffff;
-	transition: text-decoration 0.3s ease;
+    color: inherit;
+    text-decoration: none;
+    text-shadow: 0.3px 0 0 #ffffff;
+    transition: text-decoration 0.3s ease;
 
 }
 footer p a:hover {
-	text-decoration: underline:
+    text-decoration: underline;
 }
