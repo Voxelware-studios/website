@@ -1,0 +1,196 @@
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="../../vxl_small.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Voxelware Studios</title> 
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navdiv">
+            <div class="logo"><a href="../../"><img src="../../vxl.png" alt="logo" width="507" height="97"></a></div>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="../../">Home</a></li>
+                    <li><a href="../">Blogs</a></li>
+                    <li><a href="../../projects/">Projects</a></li>
+                    <li><a href="../../contact/">Contact</a></li>
+                    <li><a href="../../vpl/">VPL</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="no_blog">
+        <h1>CoreTuff v1.0 Nightly-1</h1>
+    </div>
+    <div class="blog_content">
+        <h2>Overview</h2>
+        <ul>
+            <li>First public development build of CoreTuff</li>
+            <li>Core systems implemented and under active development</li>
+        </ul>
+
+        <h2>Major Features</h2>
+        <ul>
+            <li>Teleportation system including /tpask, /tpaccept, /tpdeny, and /tphere</li>
+            <li>Random Teleport (/rtp) with safe location detection and biome filtering</li>
+            <li>Back system (/back) to return to previous locations</li>
+            <li>Ignore system to block teleport requests</li>
+        </ul>
+
+        <h2>EULA System</h2>
+        <ul>
+            <li>Added EULA enforcement system</li>
+            <li>Plugin now generates eula.txt on first startup</li>
+            <li>Plugin will not enable until user sets accepted: true</li>
+            <li>Prevents usage without agreeing to license terms</li>
+        </ul>
+
+        <h2>Teleport System</h2>
+        <ul>
+            <li>Functional request-based teleport system</li>
+            <li>Basic validation and request handling implemented</li>
+            <li>Ongoing improvements for stability and edge cases</li>
+        </ul>
+
+        <h2>RTP (Random Teleport)</h2>
+        <ul>
+            <li>Safe teleportation avoiding unsafe blocks</li>
+            <li>Basic biome filtering</li>
+            <li>Retry system for valid location selection</li>
+            <li>Initial cooldown implementation</li>
+        </ul>
+
+        <h2>Back System</h2>
+        <ul>
+            <li>Tracks previous player location</li>
+            <li>Works with teleport events and basic scenarios</li>
+            <li>Still being refined for edge cases</li>
+        </ul>
+
+        <h2>Cooldown System</h2>
+        <p>Separate cooldown handling for:</p>
+        <ul>
+            <li>/back</li>
+            <li>/rtp</li>
+            <li>/tpask</li>
+        </ul>
+        <p>Config-based values introduced</p>
+
+        <h2>Ignore System</h2>
+        <p>Commands:</p>
+        <ul>
+            <li>/tpignore (ignore teleport requests)</li>
+            <li>/tpuignore (unignore teleport requests)</li>
+            <li>Database-backed storage</li>
+        </ul>
+        <p>Initial caching system implemented.</p>
+
+        <h2>Commands which has Aliases</h2>
+
+        <p>/tpask</p>
+        <ul>
+            <li>Aliases: /tpa</li>
+        </ul>
+
+        <p>/tpaccept</p>
+        <ul>
+            <li>Aliases: /tpac</li>
+        </ul>
+
+        <p>/tpdeny</p>
+        <ul>
+            <li>Aliases: /tpd</li>
+        </ul>
+
+        <p>/tpignore</p>
+        <ul>
+            <li>Aliases: /tpig</li>
+        </ul>
+
+        <p>/tpuignore</p>
+        <ul>
+            <li>Aliases: /tpuig</li>
+        </ul>
+
+        <p>/tphere</p>
+        <ul>
+            <li>Aliases: /tph</li>
+        </ul>
+
+        <h2>Misc Features</h2>
+        <ul>
+            <li>Utility commands:
+                <ul>
+                    <li>/fly</li>
+                    <li>/heal</li>
+                    <li>/hunger</li>
+                    <li>/gmc, /gms, /gma, /gmsp</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>Folia and Paper Support</h2>
+        <ul>
+            <li>Compatible with both Paper and Folia</li>
+            <li>Uses thread-safe execution handling</li>
+            <li>Initial implementation of region-safe scheduling</li>
+        </ul>
+
+        <h2>Configuration</h2>
+        <ul>
+            <li>Basic config.yml support added</li>
+            <li>Includes cooldowns and message settings</li>
+            <li>Configuration system still evolving</li>
+        </ul>
+
+        <h2>Database</h2>
+        <ul>
+            <li>H2 database integration</li>
+            <li>Used for ignore system persistence</li>
+        </ul>
+
+        <h2>Permissions</h2>
+
+        <p>Misc command permissions</p>
+        <ul>
+            <li>coretuff.player.shorthand.gmc</li>
+            <li>coretuff.player.shorthand.gms</li>
+            <li>coretuff.player.shorthand.gmsp</li>
+            <li>coretuff.player.shorthand.gma</li>
+            <li>coretuff.player.misc.heal</li>
+            <li>coretuff.player.misc.fly</li>
+            <li>coretuff.player.misc.hunger</li>
+        </ul>
+
+        <p>Teleportation command permissions</p>
+        <ul>
+            <li>coretuff.player.tp.back</li>
+            <li>coretuff.player.tp.rtp</li>
+            <li>coretuff.player.tp.tpaccept</li>
+            <li>coretuff.player.tp.tpask</li>
+            <li>coretuff.player.tp.tpdeny</li>
+            <li>coretuff.player.tp.tphere</li>
+            <li>coretuff.player.tp.tpignore</li>
+            <li>coretuff.player.tp.tpunignore</li>
+        </ul>
+
+        <h2>Known Issues</h2>
+        <ul>
+            <li>Possible edge-case bugs in teleport handling</li>
+            <li>Some systems may require further optimization</li>
+        </ul>
+
+        <h2>Notes</h2>
+        <ul>
+            <li>This is a nightly development build, It might be unstable</li>
+            <li>You can report any bugs in our discord (https://discord.gg/tuArC9pTbv)</li>
+        </ul>
+    </div>
+    <footer>
+        <p>Copyright © 2026 Voxelware Studios. All rights reserved.</p>
+        <p>Join our <a href="https://voxelware.org/discord" target="_blank">Discord server</a>!</p>
+    </footer>
+</body>
+</html>

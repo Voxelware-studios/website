@@ -1,0 +1,159 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: hsl(0, 0%, 10%);
+    color: hsl(0, 0%, 90%);
+}
+
+body {
+    min-height: 100vh;
+}
+
+a {
+    color: hsl(224, 100%, 61%);
+}
+
+.navbar {
+    width: 100%;
+    background-color: #1c0033;
+}
+
+.navdiv {
+    max-width: 1200px;
+    margin: auto;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.navdiv .logo img {
+    display: block;
+    max-width: 180px;
+    height: auto;
+}
+
+.nav-links ul {
+    list-style: none;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.nav-links ul li a {
+    /* bdeltha l purple bach tji m3a l logo */
+    background-color: #2a0045;
+    color: white;
+    border-radius: 35px;
+    text-decoration: none;
+    padding: 10px 24px;
+    border: 1px solid #f940d4;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nav-links ul li a:hover {
+    text-decoration: underline;
+    background-color: #3b0060;
+    /* shadow b lwan dyal logo */
+    box-shadow: 0 0 10px #f940d4, 0 0 5px #bc40ea;
+}
+
+main {
+    max-width: 1100px;
+    margin: auto;
+    padding: 24px;
+}
+
+h1 {
+    padding: 60px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 80px;
+    background-image: url(api/images/Nightly-Red.svg);
+    background-size: cover;
+    background-position: center;
+    border-radius: 24px;
+    gap: 24px;
+}
+
+.no_blog {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 24px;
+}
+
+.no_blog h1 {
+    font-size: 48px;
+    padding: 40px 24px;
+
+    background-image: url("../../api/images/Nightly-Red.svg");
+    background-size: cover;
+    background-position: center;
+
+    border-radius: 24px;
+}
+
+.blog_content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 40px 24px;
+    line-height: 1.8;
+    color: hsl(0, 0%, 85%);
+}
+.blog_content h2 {
+    font-size: 36px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: hsl(0, 0%, 90%);
+    border-bottom: 2px solid hsl(0, 0%, 90%);
+    padding-bottom: 12px;
+}
+
+.blog_content h2:first-child {
+    margin-top: 0;
+}
+
+.blog_content h3 {
+    font-size: 24px;
+    margin-top: 32px;
+    margin-bottom: 16px;
+    color: hsl(0, 0%, 90%);
+}
+
+.blog_content p {
+    margin-bottom: 16px;
+    font-size: 16px;
+}
+
+.blog_content ul {
+    margin-left: 20px;
+    margin-bottom: 24px;
+}
+
+.blog_content ul li {
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+.blog_content strong {
+    color: hsl(0, 0%, 45%);
+    font-weight: 600;
+}
+
+footer {
+    background-color: #1c0033;
+    color: hsl(0, 0%, 90%);
+    text-align: center;
+    padding: 16px;
+    margin-top: 24px;
+}
