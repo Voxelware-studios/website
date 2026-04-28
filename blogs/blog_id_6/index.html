@@ -1,0 +1,118 @@
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="../../vxl_small.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../blog.css">
+    <title>Voxelware Studios</title>
+</head>
+<body>
+<nav class="navbar">
+    <div class="navdiv">
+        <div class="logo"><a href="../../"><img src="../../vxl.png" alt="logo" width="507" height="97"></a></div>
+        <div class="nav-links">
+            <ul>
+                <li><a href="../../">Home</a></li>
+                <li><a href="../">Blogs</a></li>
+                <li><a href="../../projects/">Projects</a></li>
+                <li><a href="../../contact/">Contact</a></li>
+                <li><a href="../../vpl/">VPL</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="no_blog">
+    <n1>CoreTuff v1.0 Nightly-2</n1>
+</div>
+<div class="blog_content">
+    <h2>Overview</h2>
+    <ul>
+        <li>Second public development build of CoreTuff</li>
+    </ul>
+
+    <h2>Major Features</h2>
+    <ul>
+        <li>Added Teleport countdown (For all teleportation oriented commands).</li>
+        <li>Renamed /hunger command to /feed.</li>
+        <li>Changed all permission keys.</li>
+        <li>Added player field for these commands:
+        <ul>
+            <li>/gmc</li>
+            <li>/gma</li>
+            <li>/gms</li>
+            <li>/gmsp</li>
+            <li>/heal</li>
+            <li>/feed</li>
+        </ul>
+        </li>
+        <li>Integrated Placeholder API with CoreTuff.</li>
+        <li>Added prefix for plugin message. Can be configured in config.yml.</li>
+        <li>Cooldown message added in config.yml.</li>
+        <li>Updated from Paper api 1.21 to 26.1</li>
+        <li>Updated from Java 21 to 25.</li>
+    </ul>
+
+    <h2>EULA System</h2>
+    <ul>
+        <li>Changed text generated in eula.txt.</li>
+    </ul>
+
+    <h2>New Permissions</h2>
+    <ul>
+        <li>Gamemode command permissions:
+        <ul>
+            <li>coretuff.gamemode.gma</li>
+            <li>coretuff.gamemode.gma.others</li>
+            <li>coretuff.gamemode.gmc</li>
+            <li>coretuff.gamemode.gmc.others</li>
+            <li>coretuff.gamemode.gmsp</li>
+            <li>coretuff.gamemode.gmsp.others</li>
+            <li>coretuff.gamemode.gms</li>
+            <li>coretuff.gamemode.gms.others</li>
+
+        </ul>
+        </li>
+        <li>Utility command permissions:
+        <ul>
+            <li>coretuff.utility.fly</li>
+            <li>coretuff.utility.heal</li>
+            <li>coretuff.utility.heal.others</li>
+            <li>coretuff.utility.feed</li>
+            <li>coretuff.utility.feed.others</li>
+        </ul>
+        </li>
+        <li>Teleportation:
+        <ul>
+            <li>coretuff.teleportation.back</li>
+            <li>coretuff.teleportation.tpask</li>
+            <li>coretuff.teleportation.tpaccept</li>
+            <li>coretuff.teleportation.tpdeny</li>
+            <li>coretuff.teleportation.tphere</li>
+            <li>coretuff.teleportation.rtp</li>
+            <li>coretuff.teleportation.tpignore</li>
+            <li>coretuff.teleportation.tpunignore</li>
+        </ul>
+        </li>
+    </ul>
+    <h2>Known Issues</h2>
+    <ul>
+        <li>Possible edge-case bugs in teleport handling</li>
+        <li>Some systems may require further optimization</li>
+    </ul>
+
+    <h2>Notes</h2>
+    <ul>
+        <li>To use the command with player field you need .others command.</li>
+        <li>Currently you can use %player_name% Placeholder API's placeholder. Usage is mentioned in config.yml.</li>
+        <li>If you currently use Nightly 1 we recommend you to delete config.yml and eula.txt to regenerate it.</li>
+        <li>DO NOT DELETE database.mv.db you will use ignore data.S</li>
+        <li>This is a nightly development build, It might be unstable</li>
+        <li>You can report any bugs in our <a href="https://discord.gg/tuArC9pTbv">Discord</a></li>
+    </ul>
+</div>
+<footer>
+    <p>Copyright © 2026 Voxelware Studios. All rights reserved.</p>
+    <p>Join our <a href="https://discord.gg/tuArC9pTbv" target="_blank">Discord server</a>!</p>
+</footer>
+</body>
+</html>
