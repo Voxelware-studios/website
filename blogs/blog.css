@@ -155,7 +155,7 @@ footer {
     padding: 16px;
     margin-top: 24px;
 }
-n1 {
+h4 {
     padding: 60px 24px;
     display: flex;
     flex-direction: column;
@@ -168,8 +168,10 @@ n1 {
     background-position: center;
     border-radius: 24px;
     gap: 24px;
+
+
 }
-.no_blog n1 {
+.no_blog h4 {
     font-size: 48px;
     padding: 40px 24px;
     background-image: url(../api/images/red-waves.png);
