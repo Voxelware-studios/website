@@ -1,0 +1,210 @@
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="../../vxl_small.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../blog.css">
+    <title>Voxelware Studios</title>
+</head>
+<body>
+<nav class="navbar">
+    <div class="navdiv">
+        <div class="logo"><a href="../../"><img src="../../vxl.png" alt="logo" width="507" height="97"></a></div>
+        <div class="nav-links">
+            <ul>
+                <li><a href="../../">Home</a></li>
+                <li><a href="../">Blogs</a></li>
+                <li><a href="../../projects/">Projects</a></li>
+                <li><a href="../../contact/">Contact</a></li>
+                <li><a href="../../vpl/">VPL</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="no_blog">
+    <h4>CoreTuff v1.0 Nightly-3</h4>
+</div>
+<div class="blog_content">
+    <h2>Overview</h2>
+    <ul>
+        <li>Third public development build of CoreTuff</li>
+        <li>Major moderation and punishment system overhaul</li>
+        <li>Improved Bedrock/Geyser compatibility</li>
+        <li>Added highly customizable moderation configuration system</li>
+    </ul>
+
+    <h2>Major Features</h2>
+    <ul>
+        <li>Added complete moderation framework:
+            <ul>
+                <li>/ban</li>
+                <li>/tempban</li>
+                <li>/ban-ip</li>
+                <li>/kick</li>
+                <li>/warn</li>
+            </ul>
+        </li>
+        <li>Added warning severity and escalation system:
+            <ul>
+                <li>low</li>
+                <li>medium</li>
+                <li>high</li>
+            </ul>
+        </li>
+        <li>Added punishment history, status and ID system.</li>
+        <li>Added punishment retention after pardons.</li>
+        <li>Added automatic tempban expiration handling.</li>
+        <li>Added collision-safe punishment ID generator.</li>
+        <li>Added /pid punishment management command:
+            <ul>
+                <li>/pid</li>
+                <li>/pid view "id"</li>
+                <li>/pid pardon "id" "reason" </li>
+            </ul>
+        <li>Added synchronization between:
+            <ul>
+                <li>banned-players.json</li>
+                <li>banned-ips.json</li>
+                <li>CoreTuff moderation database</li>
+            </ul>
+        <li>Added automatic import/export of vanilla bans</li>
+        <li>Added Bedrock/Geyser-compatible punishment formatter</li>
+        <li>Added contextual command suggestions for moderation commands</li>
+        <li>Added command overriding support for:
+            <ul>
+                <li>/ban</li>
+                <li>/kick</li>
+                <li>/ban-ip</li>
+            </ul>
+        <li>Added world-specific RTP support:
+            <ul>
+                <li>/rtp world "world"</li>
+            </ul>
+        <li>Added world-based RTP permissions::
+            <ul>
+                <li>coretuff.teleportation.rtp."world"</li>
+            </ul>
+    </ul>
+
+    <h2>Moderation Permissions</h2>
+    <ul>
+        <li>coretuff.moderation.ban</li>
+        <li>coretuff.moderation.tempban</li>
+        <li>coretuff.moderation.banip</li>
+        <li>coretuff.moderation.kick</li>
+        <li>coretuff.moderation.warn</li>
+        <li>coretuff.moderation.pid</li>
+    </ul>
+
+    <h2>Configuration Changes </h2>
+    <ul>
+        <li>Added new directory::
+            <ul>
+                <li>plugins/CoreTuff/Core/</li>
+
+            </ul>
+        </li>
+        <li>Added moderation configuration:
+            <ul>
+                <li>plugins/CoreTuff/Core/modconfig.yml</li>
+            </ul>
+        </li>
+    </ul>
+    <h2>Customizable Features</h2>
+    <ul>
+        <li>Moderation messages</li>
+        <li>Permission-denied messages</li>
+        <li>Player-not-found messages</li>
+        <li>Usage messages</li>
+        <li>Punishment success messages</li>
+        <li>Kick messages</li>
+        <li>Warning messages</li>
+        <li>PID command messages</li>
+        <li>Punishment view formatting</li>
+        <li>Warning severity points</li>
+        <li>Warning decay system</li>
+        <li>Automatic punishment thresholds</li>
+        <li>Automatic tempban durations</li>
+        <li>Punishment retention duration</li>
+        <li>Ban screen formatting</li>
+        <li>Bedrock/Geyser punishment screen formatting</li>
+        <li>Appeal messages</li>
+        <li>Status messages</li>
+    </ul>
+    <h2>Warning System </h2>
+    <ul>
+        <li>Added configurable warning points:
+            <ul>
+                <li>low = 1</li>
+                <li>medium = 2</li>
+                <li>high = 3</li>
+            </ul>
+        <li>Added configurable warning decay system</li>
+        <li>Added configurable automatic punishments</li>
+        <li>Added warning history persistence</li>
+        <li>Added warning escalation handling</li>
+    </ul>
+    <h2>Punishment Features  </h2>
+    <ul>
+        <li>Added punishment states:
+            <ul>
+                <li>ACTIVE</li>
+                <li>PARDONED</li>
+            </ul>
+        <li>Added pardon metadata:
+            <ul>
+                <li>Reason</li>
+                <li>Pardoned by</li>
+            </ul>
+        <li>Added automatic "Duration End" handling for expired tempbans</li>
+        <li>Added moderator/source preservation for imported bans</li>
+        <li>Added punishment persistence system</li>
+        <li>Added punishment viewing through /pid view "id"</li>
+    </ul>
+    <h2>Warning System </h2>
+    <ul>
+        <li>Added configurable warning points:
+            <ul>
+                <li>low = 1</li>
+                <li>medium = 2</li>
+                <li>high = 3</li>
+            </ul>
+        <li>Added configurable warning decay system</li>
+        <li>Added configurable automatic punishments</li>
+        <li>Added warning history persistence</li>
+        <li>Added warning escalation handling</li>
+    </ul>
+    <h2>Internal Improvements</h2>
+    <ul>
+        <li>Added H2-based punishment database architecture</li>
+        <li>Added punishment schema migration support</li>
+        <li>Improved moderation synchronization systems</li>
+        <li>Improved punishment formatting and history handling</li>
+        <li>Improved online/offline moderation handling</li>
+    </ul>
+    <h2>Known Issues</h2>
+    <ul>
+        <li>Bedrock disconnect UI still has rendering limitations due to Geyser/Minecraft Bedrock client restrictions</li>
+        <li>Some moderation edge-cases may still require further testing</li>
+    </ul>
+
+    <h2>Notes</h2>
+    <ul>
+        <li>Existing vanilla bans are automatically imported into CoreTuff database.</li>
+        <li>Punishments remain stored after pardons depending on retention configuration.</li>
+        <li>New moderation files are now stored inside:
+            <ul>
+                <li>plugins/CoreTuff/Core/</li>
+            </ul>
+        <li>DO NOT DELETE database files if you want to preserve punishment history.</li>
+        <li>This is a nightly development build, It might be unstable</li>
+        <li>You can report any bugs in our <a href="https://discord.gg/tuArC9pTbv">Discord</a></li>
+        <li>You can download v1.0 Nightly-3 <a href="https://hangar.papermc.io/Voxelware-Studios/CoreTuff">here</a></li>
+    </ul>
+</div>
+<footer>
+    <p>Copyright © 2026 Voxelware Studios. All rights reserved.</p>
+    <p>Join our <a href="https://discord.gg/tuArC9pTbv" target="_blank">Discord server</a>!</p>
+</footer>
+</body>
+</html>
