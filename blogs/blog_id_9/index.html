@@ -1,0 +1,115 @@
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="../../vxl_small.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../blog.css">
+    <title>Voxelware Studios</title>
+</head>
+<body>
+<nav class="navbar">
+    <div class="navdiv">
+        <div class="logo"><a href="../../"><img src="../../vxl.png" alt="logo" width="507" height="97"></a></div>
+        <div class="nav-links">
+            <ul>
+                <li><a href="../../">Home</a></li>
+                <li><a href="../">Blogs</a></li>
+                <li><a href="../../projects/">Projects</a></li>
+                <li><a href="../../contact/">Contact</a></li>
+                <li><a href="../../vpl/">VPL</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="no_blog">
+    <h4>CoreTuff v1.0 Nightly-5</h4>
+</div>
+<div class="blog_content">
+    <h2>Overview</h2>
+    <ul>
+        <li>Fifth public development build of CoreTuff</li>
+        <li>Added workbench UI menu commands.</li>
+        <li>Added a full security layer for command hiding and plugin concealment.</li>
+        <li>Added addon loading support.</li>
+        <li>Added configurable sounds for utility, teleportation, and moderation flows.</li>
+        <li>Added version number for config files.</li>
+        <li>Split the old single core config into multiple config files.</li>
+        <li>Changes in rtp.</li>
+    </ul>
+
+    <h2>Additions</h2>
+    <ul>
+        <li>Workbenches UI menu command:
+        <ul>
+            <li>/crafting permission: coretuff.utility.craftingtable</li>
+            <li>/anvil permission: coretuff.utility.anvil</li>
+            <li>/stonecutter permission: coretuff.utility.stonecutter</li>
+            <li>/smithing permission: coretuff.utility.smithingtable</li>
+            <li>/loom permission: coretuff.utility.loom</li>
+            <li>/cartography permission: coretuff.utility.cartographytable</li>
+            <li>/enchanting permission: coretuff.utility.enchantingtable</li>
+            <li>/grindstone permission: coretuff.utility.grindstone</li>
+        </ul></li>
+        <li>Utility (Misc)
+        <ul>
+            <li>/hat premission: coretuff.utility.hat</li>
+        </ul></li>
+        <li>Plugin hide security (Beta):
+        <ul>
+            <li>By enabling this feature you can disable usage of /pl, /plugin and /? by players by toggling this feature and also tab completion.</li>
+            <li>You can toggle this feature on by running /ct pluginHide true and /ct pluginHide false to toggle off (user needs coretuff.plhide to use this command) or can change value in securityconfig.yml</li>
+            <li>You must need ProtocolLib to disable tab completion fully.</li>
+            <li>Players with coretuff.pl can use /pl, /plugin and /? command.</li>
+        </ul></li>
+        <li>Addon Support:
+        <ul>
+            <li>Added addons framework into core plugin. By default Addons folder will generate in CoreTuff folder.</li>
+        </ul></li>
+        <li>UX:
+        <ul>
+            <li>Added sounds for certain feature which can be configured in their respective config folders.</li>
+            <li>Added /ct bug command and only op can access it.</li>
+        </ul></li>
+        <li>Configuration files:
+        <ul>
+            <li>spited config.yml into following:
+            <ul>
+                <li>teleportconfig.yml</li>
+                <li>securityconfig.yml</li>
+                <li>utilityconfig.yml</li>
+                <li>modconfig.yml</li>
+            </ul></li>
+            <li>Each config comes with its own version number. It helps us to update config files easily if there is any addition or deletion. It works by checking the version number from config file against the number in code, If when change detected renames the file in folder as old and adds new config.</li>
+        </ul></li>
+    </ul>
+
+    <h2>Changes</h2>
+    <ul>
+        <li>RTP:
+        <ul>
+            <li>Now RTP check for generated chunks and during teleport countdown plugin tries to load that and nearby chunk in ram to avoid sudden spike in load. This feature can be toggled in teleportconfig.yml and by default this feature is on rtpGeneratedChunksOnly: true</li>
+        </ul></li>
+    </ul>
+
+    <h2>Bug fix</h2>
+    <ul>
+        <li>Players were able to use teleport command without permission (Fixed)</li>
+    </ul>
+
+    <h2>Notes</h2>
+    <ul>
+        <li>This is a nightly development build, It might be unstable</li>
+        <li>It's highly recommend to delete already existing config files.</a></li>
+        <li>Plugin hide security feature is in beta which means it has a lot of bugs.</a></li>
+        <li>We highly recommend you to go through new config files.</li>
+    </ul>
+    <li>You can report any bugs in our <a href="https://github.com/Voxelware-studios/CoreTuff/issues"target="_blank" rel="noopener noreferrer">Issue Tracker</a></li>
+    <li>For support join our <a href="https://discord.gg/tuArC9pTbv"target="_blank" rel="noopener noreferrer">Discord server</a></li>
+    <li>You can download v1.0 Nightly-5 in <a href="https://hangar.papermc.io/Voxelware-Studios/CoreTuff"target="_blank" rel="noopener noreferrer">Hangar</a> or <a href="https://modrinth.com/plugin/coretuff"target="_blank" rel="noopener noreferrer">Modrinth</a></li>
+</div>
+<footer>
+    <p>Copyright © 2026 Voxelware Studios. All rights reserved.</p>
+    <p>Join our <a href="https://discord.gg/tuArC9pTbv" target="_blank" rel="noopener noreferrer">Discord server</a>!</p>
+</footer>
+</body>
+</html>
