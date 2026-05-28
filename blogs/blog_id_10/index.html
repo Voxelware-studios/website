@@ -1,0 +1,229 @@
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="../../vxl_small.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../blog.css">
+    <title>Voxelware Studios</title>
+</head>
+<body>
+<nav class="navbar">
+    <div class="navdiv">
+        <div class="logo"><a href="../../"><img src="../../vxl.png" alt="logo" width="507" height="97"></a></div>
+        <div class="nav-links">
+            <ul>
+                <li><a href="../../">Home</a></li>
+                <li><a href="../">Blogs</a></li>
+                <li><a href="../../projects/">Projects</a></li>
+                <li><a href="../../contact/">Contact</a></li>
+                <li><a href="../../vpl/">VPL</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="no_blog">
+    <h4>CoreTuff v1.0 Nightly-6</h4>
+</div>
+<div class="blog_content">
+    <h2>Overview</h2>
+    <ul>
+        <li>Sixth public development build of CoreTuff.</li>
+        <li>Complete package rebrand from <code>net.voxfonix.coreTuff</code> to <code>org.voxelware.coretuff</code>.</li>
+        <li>Added full economy system with Vault integration, transaction history, and interest scheduler.</li>
+        <li>Added Lands system with persistent homes and warps backed by H2 database.</li>
+        <li>Added economy integration for warps (per-warp cost with bypass permission).</li>
+        <li>Added Jail system for moderating players with configurable teleport delay and sounds.</li>
+        <li>Added Kits system with YAML-based item definitions and per-player cooldowns.</li>
+        <li>Added PlaceholderAPI expansion exposing economy, warps, and moderation data.</li>
+        <li>Added custom plugin dependency resolver for bootstrapping H2, Configurate, and Lombok.</li>
+        <li>Added Modrinth-based update checker.</li>
+        <li>Added <code>formatRaw()</code> message method for prefix-free display messages.</li>
+        <li>Added new config files: <code>ecoconfig.yml</code>, <code>kitsconfig.yml</code>, <code>landconfig.yml</code>.</li>
+        <li>Expanded H2 database with 6 new tables for homes, warps, economy, transactions, jails, and jailed players.</li>
+        <li>Improved security with <code>plugin-hide</code> defaulting to <code>false</code> and refined permission checks.</li>
+        <li>Improved VersionedConfigLoader rename pattern to timestamped <code>old&lt;base&gt;_&lt;date&gt;.yml</code>.</li>
+    </ul>
+
+    <h2>Additions</h2>
+    <ul>
+        <li>Economy System:
+            <ul>
+                <li>Full virtual economy with H2 persistence:
+                    <ul>
+                        <li><code>/balance [player]</code> &ndash; Check your or another player's balance. Permission: <code>coretuff.economy.balance</code>, <code>coretuff.economy.balance.others</code></li>
+                        <li><code>/pay &lt;player&gt; &lt;amount&gt;</code> &ndash; Transfer funds to another player. Permission: <code>coretuff.economy.pay</code></li>
+                        <li><code>/eco &lt;give|take|set|reset&gt; &lt;player&gt; &lt;amount&gt;</code> &ndash; Admin economy management. Permission: <code>coretuff.economy.admin</code></li>
+                    </ul></li>
+                <li>Economy configuration (<code>ecoconfig.yml</code>):
+                    <ul>
+                        <li>Currency name, name-plural, symbol, decimal places</li>
+                        <li>Starting balance, max balance</li>
+                        <li>Pay tax percentage with bypass permission</li>
+                        <li>Interest system (rate %, interval hours, max balance, bypass permission)</li>
+                        <li>Configurable sounds for pay-sent, pay-received, balance-check, eco actions, insufficient-funds</li>
+                    </ul></li>
+                <li>Vault integration:
+                    <ul>
+                        <li><code>VaultHook.java</code> registers a Vault economy provider on startup if Vault is detected</li>
+                        <li>Allows other plugins (e.g. ShopGUI+, Essentials) to use CoreTuff's economy</li>
+                    </ul></li>
+                <li>Transaction history:
+                    <ul>
+                        <li><code>TransactionRepository.java</code> with H2 <code>economy_transactions</code> table</li>
+                        <li>Tracks sender, target, amount, type, reason, timestamp</li>
+                        <li><code>TransactionType</code> enum (PAY, ADMIN_GIVE, ADMIN_TAKE, ADMIN_SET, ADMIN_RESET, INTEREST)</li>
+                    </ul></li>
+                <li>Economy service (<code>EconomyService.java</code>):
+                    <ul>
+                        <li>Thread-safe balance operations with BigDecimal precision</li>
+                        <li>Interest scheduler: runs at configurable interval via Folia/Paper scheduler</li>
+                        <li><code>EconomyRepository.java</code> for H2 CRUD operations</li>
+                    </ul></li>
+            </ul></li>
+        <li>Lands System:
+            <ul>
+                <li>Homes (H2 database-backed):
+                    <ul>
+                        <li><code>/home &lt;name&gt;</code> &ndash; Teleport to a home. Permission: <code>coretuff.land.home</code></li>
+                        <li><code>/sethome &lt;name&gt;</code> &ndash; Set a home at your location. Permission: <code>coretuff.land.sethome</code></li>
+                        <li><code>/delhome &lt;name&gt;</code> &ndash; Delete a home. Permission: <code>coretuff.land.delhome</code></li>
+                        <li>Configurable teleport delay, default home name, max homes per permission</li>
+                        <li>Configurable sounds (set, teleport, delete, list)</li>
+                    </ul></li>
+                <li>Warps (H2 database-backed):
+                    <ul>
+                        <li><code>/warp &lt;name&gt; [player]</code> &ndash; Teleport to a warp. Permission: <code>coretuff.land.warps.warp</code>, warp-others: <code>coretuff.land.warps.warp.others</code></li>
+                        <li><code>/setwarp &lt;name&gt; [description]</code> &ndash; Create or update a warp. Permission: <code>coretuff.land.warps.setwarp</code></li>
+                        <li><code>/delwarp &lt;name&gt;</code> &ndash; Delete a warp. Permission: <code>coretuff.land.warps.delwarp</code></li>
+                        <li><code>/warps [page]</code> &ndash; List all warps. Permission: <code>coretuff.land.warps.list</code></li>
+                    </ul></li>
+                <li>Economy integration: per-warp cost with <code>coretuff.land.warps.bypass-cost</code> bypass permission</li>
+                <li>Max warps per permission base, configurable descriptions, creation timestamps</li>
+                <li>Configurable sounds (set, teleport, delete, list, no-permission, insufficient-funds)</li>
+                <li>Lands configuration (<code>landconfig.yml</code>):
+                    <ul>
+                        <li>Separate sections for homes and warps with their own messages, sounds, and limits</li>
+                        <li>Versioned config with auto-migration</li>
+                    </ul></li>
+            </ul></li>
+        <li>Jail System:
+            <ul>
+                <li>Full moderation jail feature with H2 database:
+                    <ul>
+                        <li><code>/setjail &lt;name&gt;</code> &ndash; Create a jail at your location. Permission: <code>coretuff.moderation.jail.setjail</code></li>
+                        <li><code>/deljail &lt;name&gt;</code> &ndash; Delete a jail. Permission: <code>coretuff.moderation.jail.deljail</code></li>
+                        <li><code>/jail &lt;name&gt; [player] [reason]</code> &ndash; Jail a player. Permission: <code>coretuff.moderation.jail.jail</code>, others: <code>coretuff.moderation.jail.jail.others</code></li>
+                        <li><code>/jails</code> &ndash; List all configured jails. Permission: <code>coretuff.moderation.jail.list</code></li>
+                    </ul></li>
+                <li>H2 tables: <code>jails</code> (locations) and <code>jailed_players</code> (tracking)</li>
+                <li>Configurable teleport delay (seconds), release-on-logout toggle</li>
+                <li>Configurable messages and sounds in <code>modconfig.yml</code> under <code>moderation.jail.*</code></li>
+            </ul></li>
+        <li>Kits System:
+            <ul>
+                <li>YAML-defined kits with cooldowns:
+                    <ul>
+                        <li><code>/kit &lt;name&gt; [player]</code> &ndash; Redeem a kit. Permission: <code>coretuff.utility.kit.&lt;name&gt;</code>, others: <code>coretuff.utility.kit.others</code></li>
+                        <li><code>/kits</code> &ndash; List available kits with availability status. Permission: <code>coretuff.utility.kit.list</code></li>
+                    </ul></li>
+                <li><code>kitsconfig.yml</code> with <code>config-version</code>, default cooldown, kit teleport delay</li>
+                <li>Sample kit "starter" with diamond sword, cooked beef, iron tools</li>
+                <li>Per-player cooldown tracking (in-memory Map, resets on restart)</li>
+                <li>Items defined as YAML list of <code>material</code> + <code>amount</code> entries</li>
+                <li>Items dropped at feet if inventory is full</li>
+            </ul></li>
+        <li>PlaceholderAPI Expansion:
+            <ul>
+                <li><code>CoreTuffExpansion.java</code> auto-registers on startup if PlaceholderAPI is present</li>
+                <li><code>%coretuff_balance%</code> / <code>%coretuff_balance_raw%</code> &ndash; Current player's balance</li>
+                <li><code>%coretuff_balance_&lt;player&gt;%</code> &ndash; Specific player's balance</li>
+                <li><code>%coretuff_currency_symbol%</code> / <code>%coretuff_currency_name%</code> / <code>%coretuff_currency_name_plural%</code></li>
+                <li><code>%coretuff_has_funds_&lt;amount&gt;%</code> &ndash; Returns yes/no if player can afford the amount</li>
+                <li><code>%coretuff_warps_count%</code> / <code>%coretuff_warps_list%</code> &ndash; Warp statistics</li>
+                <li><code>%coretuff_warps_list_with_desc%</code> &ndash; Warp list with descriptions</li>
+                <li><code>%coretuff_warnings%</code> / <code>%coretuff_warnings_&lt;player&gt;%</code> &ndash; Warning points</li>
+                <li><code>%coretuff_is_banned%</code> / <code>%coretuff_is_banned_&lt;player&gt;%</code> &ndash; Ban status</li>
+                <li><code>%coretuff_punishments%</code> / <code>%coretuff_punishments_&lt;player&gt;%</code> &ndash; Punishment count</li>
+            </ul></li>
+        <li>Custom Plugin Dependency Resolver:
+            <ul>
+                <li><code>dependencyresolver.java</code> &ndash; Paper plugin loader that bootstraps Maven-like dependencies</li>
+                <li>Automatically downloads and loads <code>com.h2database:h2:2.4.240</code>, <code>org.spongepowered:configurate-yaml:4.1.2</code>, <code>org.projectlombok:lombok:1.18.46</code> from Maven Central</li>
+            </ul></li>
+        <li>Update Checker:
+            <ul>
+                <li><code>UpdateChecker.java</code> &ndash; Checks Modrinth API on startup</li>
+                <li>Compares latest version against current plugin version</li>
+                <li>Logs update notification to console if newer version is available</li>
+            </ul></li>
+        <li>Database Expansion:
+            <ul>
+                <li>New H2 tables created in <code>DatabaseManager.java</code>:
+                    <ul>
+                        <li><code>homes</code> &ndash; player_uuid, home_name, world, x, y, z, yaw, pitch (composite PK)</li>
+                        <li><code>warps</code> &ndash; name (PK), world, x, y, z, yaw, pitch, owner_uuid, description, created_at</li>
+                        <li><code>economy</code> &ndash; player_uuid (PK), balance</li>
+                        <li><code>economy_transactions</code> &ndash; id (IDENTITY), sender_uuid, target_uuid, amount, transaction_type, reason, created_at</li>
+                        <li><code>jails</code> &ndash; name (PK), world, x, y, z, yaw, pitch</li>
+                        <li><code>jailed_players</code> &ndash; player_uuid (PK), jail_name, jailed_by, reason, jailed_at, release_at</li>
+                    </ul></li>
+            </ul></li>
+    </ul>
+
+    <h2>Changes</h2>
+    <ul>
+        <li>Security:
+            <ul>
+                <li><code>plugin-hide</code> default changed from <code>true</code> to <code>false</code> in <code>securityconfig.yml</code></li>
+                <li>All <code>PluginHideListener</code> event handlers now guard with <code>if (!config.pluginHideEnabled()) return;</code> &ndash; hiding only activates when explicitly enabled</li>
+                <li><code>isVisibleTo()</code> returns <code>true</code> for commands with null/blank permission (fixes tab-completion for vanilla commands)</li>
+                <li>Removed custom <code>coretuff.command.&lt;name&gt;</code> fallback from <code>ProtocolCommandHider</code></li>
+                <li><code>SecurityConfig</code> now provides typed API: <code>pluginHideEnabled()</code>, <code>setPluginHide()</code>, <code>hiddenCommandMessage()</code></li>
+                <li><code>PlayerCommandSendEvent</code> handler simplified with <code>removeIf</code> pattern</li>
+                <li>Brigadier <code>children</code> field resolved once in static block for performance</li>
+            </ul></li>
+        <li>Config Version Migration:
+            <ul>
+                <li><code>VersionedConfigLoader.renameCurrentAsOld()</code> now creates <code>old&lt;base&gt;_yyyyMMdd-HHmmss.yml</code> instead of <code>old&lt;filename&gt;</code></li>
+                <li>Pre-existing old file is deleted before rename to avoid conflicts</li>
+            </ul></li>
+        <li>Permission Tree Expansion:
+            <ul>
+                <li>New top-level permission groups: <code>coretuff.land</code>, <code>coretuff.economy</code>, <code>coretuff.moderation.jail</code>, <code>coretuff.utility.kit</code></li>
+                <li>New player-facing Permissions: <code>coretuff.land.home</code>, <code>coretuff.land.sethome</code>, <code>coretuff.land.delhome</code>, <code>coretuff.economy.balance</code>, <code>coretuff.economy.pay</code>, <code>coretuff.utility.kit.list</code></li>
+                <li><code>coretuff.land.warps</code> children: warp, setwarp, delwarp, list, warp.others, bypass-cost</li>
+                <li><code>coretuff.economy</code> children: balance, balance.others, pay, admin, bypass-tax, bypass-interest</li>
+            </ul></li>
+        <li>Config File Additions:
+            <ul>
+                <li><code>ecoconfig.yml</code> &ndash; Economy configuration (version 1.0)</li>
+                <li><code>kitsconfig.yml</code> &ndash; Kit definitions (version 1.0)</li>
+                <li><code>landconfig.yml</code> &ndash; Homes and warps configuration (version 1.0)</li>
+                <li><code>modconfig.yml</code> &ndash; Bumped to version 1.1 with jail section</li>
+            </ul></li>
+    </ul>
+
+    <h2>Bug fix</h2>
+    <ul>
+        <li>Tab completion incorrectly hid commands that had no permission requirement (Fixed &ndash; <code>isVisibleTo()</code> now returns <code>true</code> for null/blank permission)</li>
+    </ul>
+
+    <h2>Notes</h2>
+    <ul>
+        <li>This is a nightly development build, It might be unstable.</li>
+        <li>Existing Nightly-5 config files are compatible but <code>modconfig.yml</code> will be auto-migrated to v1.1 on first run (old file preserved as <code>oldmodconfig_&lt;date&gt;.yml</code>).</li>
+        <li>Plugin hide security feature is now opt-in (defaults to <code>false</code>). Enable with <code>/ct pluginHide true</code>.</li>
+        <li>Economy data is stored in H2 database &ndash; backup <code>Core/database.mv.db</code> regularly.</li>
+        <li>Kit cooldowns are currently in-memory only and reset on server restart (persistence planned).</li>
+        <li>We highly recommend you to review all new config files, especially <code>ecoconfig.yml</code>, <code>landconfig.yml</code>, and <code>kitsconfig.yml</code>.</li>
+    </ul>
+    <li>You can report any bugs in our <a href="https://github.com/Voxelware-studios/CoreTuff/issues" target="_blank" rel="noopener noreferrer">Issue Tracker</a></li>
+    <li>For support join our <a href="https://discord.gg/tuArC9pTbv" target="_blank" rel="noopener noreferrer">Discord server</a></li>
+    <li>You can download v1.0 Nightly-6 in <a href="https://modrinth.com/plugin/coretuff" target="_blank" rel="noopener noreferrer">Modrinth</a></li>
+</div>
+<footer>
+    <p>Copyright &copy; 2026 Voxelware Studios. All rights reserved.</p>
+    <p>Join our <a href="https://discord.gg/tuArC9pTbv" target="_blank" rel="noopener noreferrer">Discord server</a>!</p>
+</footer>
+</body>
+</html>
